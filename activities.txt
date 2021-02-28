@@ -12,4 +12,5 @@ installed all required packages for our back_end DEVELOPMENT
 setted up our app.js, server.js and config file for running our back_end server
 Now our server is up and running
 we installed nodemon which helps to run our server automatically whenever we change something in our files without reloading the server
-
+setting our app in postman
+created our first route{getting app products}
