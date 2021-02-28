@@ -80,18 +80,15 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-    createdAt:{
-        type:Date,
-        default:Date.now()
-        },
     manufacturer :{
         type:String,
         required:[true, 'Please enter product manufacturer name'],
         maxLength:[50, 'Manufacturer name cannot exceed 50 Characters']
-    }
-
-
-
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now()
+        }
 })
 module.exports = mongoose.model('Products', productSchema);
 
