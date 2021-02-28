@@ -15,3 +15,6 @@ we installed nodemon which helps to run our server automatically whenever we cha
 setting our app in postman
 created our first route{getting app products}
 connecting the application to mongoDB database
+Saving products in the database functionality
+
+
