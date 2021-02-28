@@ -4,7 +4,10 @@
   "description": "complete ecommerce application using MERN ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node back_end/server.js",
+     "dev":"SET NODE_ENV=DEVELOPMENT & nodemon back_end/server.js",
+    "prod":"SET NODE_ENV=PRODUCTION & nodemon back_end/server.js"
   },
   "author": "Nshimiye Emmy",
   "license": "ISC",
