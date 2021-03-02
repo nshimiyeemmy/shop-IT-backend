@@ -19,6 +19,11 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:[true,'Please enter product Description'],
     },
+    manufacturer:{
+        type:String,
+        required:[true,'Please enter Manufacturer name'],
+        maxLength:[20, 'Manufacturer name cannot exceed 20 characters'],
+    },
     ratings:{
         type:Number,
         default:0
@@ -80,11 +85,6 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-    manufacturer :{
-        type:String,
-        required:[true, 'Please enter product manufacturer name'],
-        maxLength:[50, 'Manufacturer name cannot exceed 50 Characters']
-    },
     createdAt:{
         type:Date,
         default:Date.now()

@@ -3,12 +3,13 @@
         "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":12,
         "ratings":4.5,
         "images":[{
             "public_id":"products/thrjdfghfhdhkdgk",
             "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
         }],
-        "category":"Electronic",
+        "category":"Electronics",
         "quantity":50,
         "numOfReviews":32,
         "reviews":[]
@@ -17,28 +18,32 @@
         "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
         "ratings":4.5,
         "images":[{
             "public_id":"products/thrjdfghfhdhkdgk",
             "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
         }],
-        "category":"Electronic",
+        "category":"Electronics",
         "quantity":50,
         "numOfReviews":32,
-        "reviews":[]
+        "reviews":[],
+        "manufacturer:":"Amazon Technology company"
     },
     {
         "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
         "ratings":4.5,
         "images":[{
             "public_id":"products/thrjdfghfhdhkdgk",
             "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
         }],
-        "category":"Electronic",
+        "category":"Electronics",
         "quantity":50,
         "numOfReviews":32,
-        "reviews":[]
+        "reviews":[],
+        "manufacturer:":"Amazon Technology company"
     }
 ]
