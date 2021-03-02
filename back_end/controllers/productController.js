@@ -1,6 +1,6 @@
 // To manage all product related logics or functions, controllers functions
 const Products = require('../models/products');
-
+const ErrorHandler = require('../utils/errorHandler')
 
 //Create new Product =>   /api/v1/admin/products/new
 exports.newProducts = async (req,res,next)=>{
@@ -26,10 +26,7 @@ exports.getProducts = async (req,res,next)=>{
 exports.getSingleProduct = async (req,res,next) =>{
     const product = await Products.findById(req.params.id);
     if(!product){
-        return res.status(404).json({
-            success:false,
-            message: 'Product was not Found'
-        })
+        return next(new ErrorHandler('Product not found',404))
     }
     res.status(200).json({
         success:true,
