@@ -7,7 +7,8 @@ initialised project as a git
 created my first backend file {app.js}
 setting up the config file 
 
-so today as per 28/02/2021
+so today as per 28/02/2021:
+
 installed all required packages for our back_end DEVELOPMENT
 setted up our app.js, server.js and config file for running our back_end server
 Now our server is up and running
@@ -16,5 +17,8 @@ setting our app in postman
 created our first route{getting app products}
 connecting the application to mongoDB database
 Saving products in the database functionality
+
+Today as 01/03/2021:
+
 
 
