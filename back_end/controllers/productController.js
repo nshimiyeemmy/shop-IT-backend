@@ -2,13 +2,13 @@
 const Products = require('../models/products');
 
 
-//Create new Product =>   /api//v1/products/new
+//Create new Product =>   /api/v1/admin/products/new
 exports.newProducts = async (req,res,next)=>{
-    const Products = await Products.create(req.body);
+    const products = await Products.create(req.body);
     res.status(201).json({
         success: true,
         message:'Product was successfully saved into the Database.',
-        data: product
+        data: products
     })
 }
 
@@ -35,5 +35,27 @@ exports.getSingleProduct = async (req,res,next) =>{
         success:true,
         data:product
     })
+}
+
+//Update a Product =>   /api//v1/admin/products/:id
+exports.updateProduct = async (req,res,next)=>{
+    let product = await Products.findById(req.params.id);
+
+    if(!product){
+        return res.status(404).json({
+            success:false,
+            message: 'Product was not Found'
+        })
+    }
+    product = await Products.findByIdAndUpdate(req.params.id, req.body,{
+        new: true,
+        runValidators:true,
+        useFindAndModify:false
+    });
+    res.status(200).json({
+        success:true,
+        data:product
+    })
+
 }
 
