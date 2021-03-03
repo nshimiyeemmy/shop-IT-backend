@@ -10,7 +10,6 @@ process.on('uncaughtException', err=>{
     console.log("Shutting down due to uncaught Exceptions");
     process.exit(1);
 })
-
 //connecting to mongoDB database
 connectToDatabase();
 
