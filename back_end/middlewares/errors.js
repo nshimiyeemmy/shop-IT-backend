@@ -17,11 +17,17 @@ module.exports = (err,req,res,next)=>{
        let error = {...err}
        error.message  = err.message
 
-       //Wrong Mongoose Object Id Handling Errors
+       // Handling Wrong Mongoose Object Id Errors
        if(err.name === 'CastError'){
            const message = `Resource not Found : Invalid ${err.path}`;
            error = new ErrorHandler(message,400);
        }
+
+      //Handling Mongoose Validation Errors
+      if(err.name === 'ValidationError'){
+          const message = Object.values(err.errors).map(value =>value.message);
+          error = new ErrorHandler(message,400);
+      }
 
     res.status(error.statusCode).json({
         success:false,
