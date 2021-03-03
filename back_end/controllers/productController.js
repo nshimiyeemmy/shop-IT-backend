@@ -10,7 +10,8 @@ const APIFeatures = require('../utils/apiFeatures');
 exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
 
     const apiFeatures = new APIFeatures(Products.find(), req.query)
-                            .search();
+                            .search()
+                            .filter();
     const products = await apiFeatures.query;
     res.status(200).json({
         success: true,
