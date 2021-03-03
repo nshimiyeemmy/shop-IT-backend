@@ -8,8 +8,5 @@ const connectToDatabase = ()=>{
      }).then(con => {
          console.log(`Database connected with HOST ${con.connection.host}`);
      })
-     .catch(error => {
-        console.log("Failed to Connect to the database"); 
-      });
 }
 module.exports = connectToDatabase;
