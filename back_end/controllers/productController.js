@@ -1,6 +1,23 @@
 // To manage all product related logics or functions, controllers functions
 const Products = require('../models/products');
-const ErrorHandler = require('../utils/errorHandler')
+
+const ErrorHandler = require('../utils/errorHandler');
+
+//Get single Product =>   /api/v1/products/:id
+exports.getSingleProduct = async (req,res,next) =>{
+    const product = await Products.findById(req.params.id);
+
+    if(!product)
+         return next(new ErrorHandler('Product not Found', 404));
+    
+
+            res.status(200).json({
+                success:true,
+                data:product
+            });
+}
+
+
 
 //Create new Product =>   /api/v1/admin/products/new
 exports.newProducts = async (req,res,next)=>{
@@ -12,6 +29,7 @@ exports.newProducts = async (req,res,next)=>{
     })
 }
 
+
 //Get All Products =>   /api//v1/products
 exports.getProducts = async (req,res,next)=>{
     const products = await Products.find();
@@ -19,18 +37,6 @@ exports.getProducts = async (req,res,next)=>{
         success: true,
         Count: products.length,
         data: products
-    })
-}
-
-//Get single Product =>   /api//v1/products/:id
-exports.getSingleProduct = async (req,res,next) =>{
-    const product = await Products.findById(req.params.id);
-    if(!product){
-        return next(new ErrorHandler('Product not found',404))
-    }
-    res.status(200).json({
-        success:true,
-        data:product
     })
 }
 
