@@ -4,6 +4,13 @@ const connectToDatabase = require('./config/database');
 //setting up the config file
  require('dotenv').config ({ path: 'back_end/config/config.env' });
 
+//Handling the Uncaught exceptions
+process.on('uncaughtException', err=>{
+    console.log(`ERROR:${err.message}`);
+    console.log("Shutting down due to uncaught Exceptions");
+    process.exit(1);
+})
+
 //connecting to mongoDB database
 connectToDatabase();
 
