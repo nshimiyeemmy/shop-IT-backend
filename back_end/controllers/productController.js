@@ -8,14 +8,19 @@ const APIFeatures = require('../utils/apiFeatures');
 
 //Get All Products =>   /api//v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
+    const resPerPage = 4;
+    //In order to implement pagination on front end you have to provide total number of documents in the database like below
+    const productCount = await Products.countDocuments();
 
     const apiFeatures = new APIFeatures(Products.find(), req.query)
                             .search()
-                            .filter();
+                            .filter()
+                            .pagination(resPerPage);
     const products = await apiFeatures.query;
     res.status(200).json({
         success: true,
         Count: products.length,
+        productCount:productCount,
         data: products
     })
 })
