@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
-const errorMiddleware = require('./middlewares/errors');
+ 
+const errorMiddlewares = require('./middlewares/errors');
 
 app.use(express.json());
+
 //Importing all the routes
 const products = require('./routes/products');
 
@@ -10,6 +12,6 @@ const products = require('./routes/products');
 app.use('/api/v1', products);
 
 //Implementing the middleware to handle errors
-app.use(errorMiddleware);
+app.use(errorMiddlewares);
 
 module.exports = app
