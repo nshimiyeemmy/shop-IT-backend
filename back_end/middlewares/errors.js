@@ -16,6 +16,13 @@ module.exports = (err,req,res,next)=>{
    if (env === "PRODUCTION"){
        let error = {...err}
        error.message  = err.message
+
+       //Wrong Mongoose Object Id Handling Errors
+       if(err.name === 'CastError'){
+           const message = `Resource not Found : Invalid ${err.path}`;
+           error = new ErrorHandler(message,400);
+       }
+
     res.status(error.statusCode).json({
         success:false,
         message: error.message || 'Internal Server Error'
