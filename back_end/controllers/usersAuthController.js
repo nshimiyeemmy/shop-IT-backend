@@ -20,11 +20,13 @@ exports.registerUser = catchAsyncErrors(async (req,res,next)=>{
             url:'https://res.cloudinary.com/nshimiye/image/upload/v1614980358/users/n3_ac3ohr.jpg'
         }
     })
+    const token = user.getJwtToken();
 
     res.status(201).json({
         success:true,
         message: 'User registered Successfully',
-        User:user
+        token:token,
+        // User:user
     })
 
 })
