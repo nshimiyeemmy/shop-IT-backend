@@ -6,14 +6,12 @@ const userSchema = new mongoose.Schema({
     firstname:{
         type:String,
         required:[true,'Please enter your first name'],
-        maxLength:[30, 'Your first name can not exceed 30 characters'],
-        validate:[validator.isString, 'Please enter valid first name']
+        maxlength:[30, 'Your first name can not exceed 30 characters']
     },
     lastname:{
-        type:[true,String],
+        type:String,
         required:[true,'Please enter your last name'],
-        maxLength:[30, 'Your last name can not exceed 30 characters'],
-        validate:[validator.isString, 'Please enter valid last name']
+        maxlength:[30, 'Your last name can not exceed 30 characters']
     },
     email:{
         type:String,
@@ -24,7 +22,8 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:[true,'Please enter your Password'],
-        minLength:[6, 'Your password must be longer than 6 characters'],
+        minlength:[6, 'Your password must be longer than 6 characters'],
+        select:false
     },
     avatar:{
             public_id:{
@@ -38,7 +37,7 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:'user'
+        default:'Customer'
     },
     createdAt:{
         type:Date,
@@ -47,5 +46,8 @@ const userSchema = new mongoose.Schema({
         resetPasswordToken:String,
         resetPasswordExpire:Date,
 })
+
+
+
 module.exports = mongoose.model('Users', userSchema);
 
