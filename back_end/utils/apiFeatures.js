@@ -33,7 +33,7 @@ filter(){
     return this;
 }
 
-//Implementing Pagination method
+//Implementing Pagination method`
 
 pagination(resPerPage){
     const currentPage = Number(this.queryStr.page) || 1;

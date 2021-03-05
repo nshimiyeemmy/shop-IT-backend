@@ -24,7 +24,6 @@ exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
         data: products
     })
 })
-
 //Get single Product =>   /api/v1/products/:id
 exports.getSingleProduct = catchAsyncErrors(async (req,res,next) =>{
     const product = await Products.findById(req.params.id);
