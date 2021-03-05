@@ -58,6 +58,11 @@ userSchema.pre('save', async function(next){
 
 })
 
+//compare user passwords
+userSchema.methods.comparePassword = async function(enteredPassword){
+    return bcrypt.compare(enteredPassword,this.password);
+}
+
 //returning jsonwebtoken when user registers or logins in
 userSchema.methods.getJwtToken = function(){
 return jwt.sign({id:this._id},process.env.JWT_SECRET,{
