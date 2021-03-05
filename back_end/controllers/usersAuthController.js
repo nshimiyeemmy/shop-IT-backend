@@ -3,6 +3,7 @@
 const User = require('../models/users');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
+const sendToken = require('../utils/JWT')
 
 // Registering a user   => /api/v1/register
 
@@ -20,14 +21,7 @@ exports.registerUser = catchAsyncErrors(async (req,res,next)=>{
             url:'https://res.cloudinary.com/nshimiye/image/upload/v1614980358/users/n3_ac3ohr.jpg'
         }
     })
-    const token = user.getJwtToken();
-
-    res.status(201).json({
-        success:true,
-        message: 'User registered Successfully',
-        token:token,
-        // User:user
-    })
+    sendToken(user ,200 ,res);
 
 })
 
@@ -52,11 +46,5 @@ exports.loginUser = catchAsyncErrors(async (req,res,next)=>{
      if(!isPasswordMatched){
         return next(new ErrorHandler('Invalid email or password', 401)) 
      }
-      const token = user.getJwtToken();
-
-     res.status(200).json({
-         success:true,
-         message:'Logged in successfully',
-         token:token
-     })
+     sendToken(user ,200 ,res);
 })
