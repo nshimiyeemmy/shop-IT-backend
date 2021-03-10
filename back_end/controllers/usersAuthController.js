@@ -153,7 +153,7 @@ exports.logoutUser = catchAsyncErrors(async (req,res,next)=>{
     })
 })
 
-exports.updateUser = catchAsyncErrors(async (req,res,next)=>{
+exports.updateUser =catchAsyncErrors(async (req,res,next)=>{
     const users = await User.findOne(re.params.id);
     if(!users){
         return next(new ErrorHandler('User not found', 404));
