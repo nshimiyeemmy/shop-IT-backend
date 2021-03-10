@@ -8,11 +8,8 @@ const sendEmail = require('../utils/sendEmail')
 const crypto = require('crypto');
 
 // Registering a user   => /api/v1/register
-
 exports.registerUser = catchAsyncErrors(async (req,res,next)=>{
-
     const {firstname,lastname,email,password} = req.body;
-
     const user = await User.create({
         firstname,
         lastname,
@@ -29,7 +26,6 @@ exports.registerUser = catchAsyncErrors(async (req,res,next)=>{
 
 
 // Login a User  => /api/v1/login
-
 exports.loginUser = catchAsyncErrors(async (req,res,next)=>{
     
     const {email,password} = req.body;
@@ -58,11 +54,12 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next) =>{
     if(!user){
         return next(new ErrorHandler('User with this email does not exist', 404))   
     }
+    
     //get the reset token and save it to the user
     const resetToken = user.getResetPasswordToken();
     await user.save({validateBeforeSave:false})
 
-    //Create the reset Password url
+    //Create the reset Password url   => /api/v1/password/reset
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
     const message = `Your password reset token is as follows:\n\n${resetUrl}\n\n If you have not requested this email, just ignore it`
 
@@ -131,18 +128,19 @@ exports.getUserProfile = catchAsyncErrors(async (req,res,next)=>{
 exports.updatePassword = catchAsyncErrors(async (req,res,next)=>{
 
     const user = await User.findById(req.user.id).select('+password');
-
     //check current current password
     const isMarched = await user.comparePassword(req.body.oldPassword);
     if(!isMarched){
         return next(new ErrorHandler('Old Password is incorrect', 400))    
     }
-    
     user.password = req.body.password;
     await user.save();
     sendToken(user ,200 ,res);
 
 })
+//Update loggedin user profile    => /api/v1/user/update
+
+
 //logout User  => /api/v1/logout
 exports.logoutUser = catchAsyncErrors(async (req,res,next)=>{
     res.cookie('token',null,{
@@ -153,4 +151,23 @@ exports.logoutUser = catchAsyncErrors(async (req,res,next)=>{
         success:true,
         message:'Logged Out Successfully'
     })
+})
+
+exports.updateUser = catchAsyncErrors(async (req,res,next)=>{
+    const users = await User.findOne(re.params.id);
+    if(!users){
+        return next(new ErrorHandler('User not found', 404));
+    }
+    else{
+        user = await User.findById(req.params.id, req.body,{
+            new:true,
+            runValidators:true,
+            useFindAndModify:false
+        }),
+
+        res.status(200).json({
+            success:true,
+            data:user
+        })
+    }
 })
