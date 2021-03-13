@@ -185,7 +185,7 @@ exports.getAllUsers = catchAsyncErrors(async (req,res,next)=>{
 exports.getUserDetails = catchAsyncErrors(async (req,res,next)=>{
     const user = await User.findById(req.params.id);
     if(!user){
-        return next(new ErrorHandler('User not found', 400))    
+        return next(new ErrorHandler(`User not found with id ${req.params.id}`, 400))    
     }
     res.status(200).json({
         success:true,
@@ -212,6 +212,23 @@ exports.updateUserDetails  = catchAsyncErrors(async (req,res,next)=>{
         message:'updated successfully Successfully',
         User:user
     })
+})
+
+
+//Delete User  => /api/v1/admin/user/:id
+exports.deleteUser = catchAsyncErrors(async (req,res,next)=>{
+    const user = await User.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler(`User not found with id ${req.params.id}`, 400))    
+    }
+    //Remove avatar from Cloudinary:TODO
+
+    await user.remove();
+    res.status(200).json({
+        success:true,
+        message:"User Deleted Successfully"
+    })
+
 })
 
 
