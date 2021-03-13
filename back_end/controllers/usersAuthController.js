@@ -138,8 +138,25 @@ exports.updatePassword = catchAsyncErrors(async (req,res,next)=>{
     sendToken(user ,200 ,res);
 
 })
-//Update loggedin user profile    => /api/v1/user/update
-
+//Update loggedin user profile    => /api/v1/me/update
+exports.updateUserProfile  = catchAsyncErrors(async (req,res,next)=>{
+    const newUserData = {
+        firstname : req.body.firstname,
+        lastname : req.body.lastname,
+        email : req.body.email
+    }
+    //Update the user avatar: TODO
+    const user  =await User.findByIdAndUpdate(req.user.id, newUserData,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+    })
+    res.status(200).json({
+        success:true,
+        message:'updated successfully Successfully',
+        User:user
+    })
+})
 
 //logout User  => /api/v1/logout
 exports.logoutUser = catchAsyncErrors(async (req,res,next)=>{
@@ -153,21 +170,5 @@ exports.logoutUser = catchAsyncErrors(async (req,res,next)=>{
     })
 })
 
-exports.updateUser =catchAsyncErrors(async (req,res,next)=>{
-    const users = await User.findOne(re.params.id);
-    if(!users){
-        return next(new ErrorHandler('User not found', 404));
-    }
-    else{
-        user = await User.findById(req.params.id, req.body,{
-            new:true,
-            runValidators:true,
-            useFindAndModify:false
-        }),
 
-        res.status(200).json({
-            success:true,
-            data:user
-        })
-    }
-})
+
