@@ -35,6 +35,14 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
     })
 })
 
+//Get all orders => /api/v1/orders
+exports.allOrders = catchAsyncErrors(async(req,res,next)=>{
+    const order = await Order.find();
+    res.status(200).json({
+        success:true,
+        Orders:order
+    })
+})
 
 //Get Single Order  => /api/v1/order/:id
 exports.getSingleOrder = catchAsyncErrors(async(req,res,next)=>{
@@ -47,7 +55,6 @@ exports.getSingleOrder = catchAsyncErrors(async(req,res,next)=>{
         Order:order
     })
 })
-
 
 //Get logged in user orders => /api/v1/orders/me
 exports.myOrders = catchAsyncErrors(async(req,res,next)=>{
