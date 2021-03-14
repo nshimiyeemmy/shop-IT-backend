@@ -71,3 +71,36 @@ exports.myOrders = catchAsyncErrors(async(req,res,next)=>{
         Order:order
     })
 })
+
+//update / Process orders => /api/v1/admin/order/:id
+exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
+    const order = await Order.findById(req.params.id);
+
+    //Checking if the orderStatus if not delivered and then update
+    if(order.orderStatus === 'Delivered'){
+   return next(new ErrorHandler('You have already delivered this order',400))
+    }
+
+    order.orderItems.forEach(async item => {
+      await updateQuantity(item.product,item.quantity)
+    })
+    
+    //updating the order status and the delivered date
+    order.orderStatus = req.body.orderStatus,
+    order.deliveredAt = Date.now()
+
+     await order.save()
+
+    res.status(200).json({
+        success:true
+        // message:"Order updated successfully",
+        // Orders:order
+    })
+})
+  async function updateQuantity(id, quantity) {
+    const product = await Product.findById(id)
+    console.log(product);       
+    product.quantity = product.quantity - quantity;
+    console.log(product);    
+    await product.save({ validateBeforeSave:false });
+}
