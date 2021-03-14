@@ -38,7 +38,8 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
 //Get all orders => /api/v1/admin/orders
 exports.allOrders = catchAsyncErrors(async(req,res,next)=>{
     const orders = await Order.find();
-    
+
+    //Calculating the total amount of money for all orders in the database
     let totalAmount = 0
     orders.forEach(order =>{
         totalAmount += order.totalPrice
