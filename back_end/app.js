@@ -14,12 +14,13 @@ const products = require('./routes/products');
 const users = require('./routes/userAuth');
 const orders = require('./routes/orders');
 
+//Implementing the middleware to handle errors
+app.use(errorMiddlewares);
 
 // doing routes
 app.use('/api/v1', products);
 app.use('/api/v1', users);
 app.use('/api/v1', orders);
-//Implementing the middleware to handle errors
-app.use(errorMiddlewares);
+
 
 module.exports = app
