@@ -88,19 +88,16 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
     //updating the order status and the delivered date
     order.orderStatus = req.body.orderStatus,
     order.deliveredAt = Date.now()
-
-     await order.save()
-
+    
+     await order.save({ validateBeforeSave:false })
     res.status(200).json({
-        success:true
-        // message:"Order updated successfully",
-        // Orders:order
+        success:true,
+        message:"Order updated successfully",
+        Orders:order
     })
 })
   async function updateQuantity(id, quantity) {
-    const product = await Product.findById(id)
-    console.log(product);       
-    product.quantity = product.quantity - quantity;
-    console.log(product);    
+    const product = await Product.findById(id)     
+    product.quantity = product.quantity - quantity; 
     await product.save({ validateBeforeSave:false });
 }
