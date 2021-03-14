@@ -1,10 +1,8 @@
-const mongoose = require('mongoose')
-const express = require('express');
-
+const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-
-    ShippingInfo:{
+//Below we are going to first be handling the shipping info of the order.
+    shippingInfo:{
 
         address:{
         type:String,
@@ -28,20 +26,25 @@ const orderSchema = new mongoose.Schema({
                     }
                 },
 
-
+//We are also gonna be getting the Info of User who placed an order
         user:{
-            type:mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required:true,
-            ref:'User'
+            ref:'User',
             },
 
-
+/*
+This is getting all the products that the user want to buy in this order.
+ So this will be array of all order items
+ Each product in order contains name,quantity,image,price
+*/
         orderItems:[
             {
             name:{
                  type:String,
                   required:true
-                },
+                }, 
+            //Quantity of that product that, that user want to purchase{order}
             quantity:{
                    type:Number,
                     required:true
@@ -54,15 +57,19 @@ const orderSchema = new mongoose.Schema({
                 type:String,
                 required:true
                 },
+            //reference of that product
             product:{
                 type:mongoose.Schema.Types.ObjectId,
                 required:true,
                 ref:'Product'
-                   }
-               }
+                   },
+               },
                ],
 
-
+           /*Information about order payment, in this case  we are going to be using stripe payment
+           So we need ID of Stripe{Stripe gives us ID of the transaction}, 
+            and also the status of that transaction
+           */
            paymentInfo:{
                id:{
                    type:String, 
@@ -74,7 +81,9 @@ const orderSchema = new mongoose.Schema({
             payedAt:{
                 type:Date
             },
-        //Below is the calculation of the total price of all items to be purchased
+        /*itemsPrice is like total price of items only, like if you want to purchase apple watch & it's price is $3
+        and you want to purchase apple watch of quantity 1, then price is $3 
+        */
            itemsPrice:{
                type:Number,
                require:true,
@@ -87,7 +96,7 @@ const orderSchema = new mongoose.Schema({
             default:0.0
         },
         /* Below is where we are going to calculate the shipping price depending on what they purchased 
-        like if user made an order of $100 then shipping price=0 and when order amount is below $100 then sipping price=$25
+        like if user has purchased products of price greater than $100 then shipping price=0 and when purchase price is below $100 then sipping price=$25
         */
         shippingPrice:{
             type:Number,
@@ -110,9 +119,9 @@ const orderSchema = new mongoose.Schema({
             type:Date
         },
     createdAt:{
-        Date:Date,
+        type:Date,
         default:Date.now()
     }
 });
-module.exports = mongoose.model('Orders', productSchema);
+module.exports = mongoose.model('Order', orderSchema);
 
