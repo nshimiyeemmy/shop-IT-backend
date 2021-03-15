@@ -80,7 +80,8 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
     if(order.orderStatus === 'Delivered'){
    return next(new ErrorHandler('You have already delivered this order',400))
     }
-
+    
+    //updating the quantity of Product items quantity back in products table after a purchase
     order.orderItems.forEach(async item => {
       await updateQuantity(item.product,item.quantity)
     })
@@ -89,15 +90,33 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
     order.orderStatus = req.body.orderStatus,
     order.deliveredAt = Date.now()
     
-     await order.save({ validateBeforeSave:false })
+   await order.save({ validateBeforeSave:false })
     res.status(200).json({
         success:true,
         message:"Order updated successfully",
         Orders:order
     })
 })
+//method to update the product quantity 
   async function updateQuantity(id, quantity) {
     const product = await Product.findById(id)     
     product.quantity = product.quantity - quantity; 
     await product.save({ validateBeforeSave:false });
 }
+
+
+
+//Delete an Order  => /api/v1/admin/order/:id
+exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
+    const order = await Order.findById(req.params.id);
+    //check if order exists
+    if(!order){
+        return next(new ErrorHandler(`Order not Found with id ${req.params.id}`, 404)); 
+    }
+   // if order exists then remove(delete) it from the database
+    await order.remove();
+    res.status(200).json({
+        success:true,
+        message:"Order deleted successfully"
+    })
+})
