@@ -128,6 +128,20 @@ exports.createProductReview = catchAsyncErrors(async(req,res,next)=>{
 
 })
 
+//Get all product reviews  => /api/v1/admin/reviews
+exports.getAllProductReviews = catchAsyncErrors(async(req,res,next)=>{
+    //getting the product by it's ID
+    const product = await Products.findById(req.query.id);
+    if(!product){
+        return next(new ErrorHandler('Product not Found', 404));
+    }
+    res.status(200).json({
+        success:true,
+    // return the reviews of that product
+        Reviews:product.reviews,
+    })
+    })
+    
 
 
 
