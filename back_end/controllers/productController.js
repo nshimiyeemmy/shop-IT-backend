@@ -143,6 +143,43 @@ exports.getAllProductReviews = catchAsyncErrors(async(req,res,next)=>{
     })
     
 
+//Delete product review  => /api/v1/admin/review
+exports.deleteProductReview = catchAsyncErrors(async(req,res,next)=>{
+    //getting the product by it's ID
+    let product = await Products.findById(req.query.productId);
+    if(!product){
+        return next(new ErrorHandler('Product not Found', 404));
+    }
+
+    //Filtering reviews of product from the product
+    const reviews = product.reviews.filter(review => review._id.toString() !== req.query.id.toString());
+
+    //updating the number of reviews
+    const numberOfReviews = reviews.length
+
+    //Updating the total ratings using reduce() that will reduce the multiple values{many reviews} to one single value {ratings}
+    const ratings = product.reviews.reduce((acc,item) =>item.rating + acc, 0) / reviews.length
+    
+    //updating the product 
+     product =  await Products.findByIdAndUpdate(req.query.productId,{
+        reviews,
+        ratings,  
+        numberOfReviews
+    },{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+    })
+    //sending the response
+    res.status(200).json({
+        success:true,
+        message:'Review Deleted successfully',
+        Product:product
+    })
+    })
+
+
+
 
 
 
