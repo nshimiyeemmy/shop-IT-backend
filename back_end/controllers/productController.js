@@ -82,5 +82,53 @@ exports.updateProduct = catchAsyncErrors(async (req,res,next)=>{
 
 
 
+//Create new review  => /api/v1/review/new
+exports.createProductReview = catchAsyncErrors(async(req,res,next)=>{
+    const {rating, comment, productId} = req.body;
+    const review = {
+        user:req.user._id,
+        name:req.user.name,
+        rating:Number(rating),
+        comment
+    }
+     //finding the product, a user wants to review
+    let product =await Products.findById(productId);
+    //checking if the product is already reviewed by that logged in user
+    const isReviewed = product.reviews.find(
+    //checking if this review matches current user, to mean that this user has already reviewed this product
+      r => r.user.toString() === req.user._id.toString()
+    )
+    if(isReviewed){
+        //if product is already reviewed by that user, that means that i simply have to update that review
+        product.reviews.forEach(review => {
+            if(review.user.toString() === req.user._id.toString()){
+                review.comment = comment,
+                review.rating = rating
+            }
+        });
+         
+    }else{
+        
+     // if user has not reviewed the product before, we are going to push the review to the product
+      product.reviews.push(review);
+      //And then update the numberOfReviews on product
+      product.numberOfReviews = product.reviews.length;
+    }
+    //Updating the total ratings using reduce() that will reduce the multiple values{many reviews} to one single value {ratings}
+    product.ratings = product.reviews.reduce((acc,item) =>item.rating + acc, 0) / product.reviews.length
+
+    //then save the product
+    await product.save({validateBeforeSave:false})
+    //retun response
+    res.status(200).json({
+        success:true,
+        message:'Reviews updated successfully',
+        Product:product
+    })
+
+})
+
+
+
 
 
