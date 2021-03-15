@@ -97,7 +97,7 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
         Orders:order
     })
 })
-//method to update the product quantity 
+//method to update the product quantity when the order is made on that product
   async function updateQuantity(id, quantity) {
     const product = await Product.findById(id)     
     product.quantity = product.quantity - quantity; 
