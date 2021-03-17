@@ -44,6 +44,7 @@ const productSchema = new mongoose.Schema({
     category:{
         type:String,
         required:[true, 'Please select the category for this product'],
+        //I defined product Categories an enum values 
         enum:{
             values:[
                 'Electronics',
