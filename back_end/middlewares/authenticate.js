@@ -5,7 +5,6 @@ const ErrorHandler = require('../utils/errorHandler');
  const jwt = require('jsonwebtoken');
  
 exports.isUserAuthenticated = catchAsyncErrors(async (req,res,next)=>{
-
         const {token} = req.cookies;
         
         if(!token){
@@ -18,7 +17,6 @@ exports.isUserAuthenticated = catchAsyncErrors(async (req,res,next)=>{
 
 
 //Handling the users roles
-
 exports.authorizeRole = (...roles)=>{
     return (req, res, next) =>{
         if(!roles.includes(req.user.role)){
