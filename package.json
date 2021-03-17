@@ -1,26 +1,26 @@
 {
-  "name": "shop_it",
-  "version": "1.0.0",
-  "description": "complete ecommerce application using MERN ",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node back_end/server.js",
-    "dev": "SET NODE_ENV=DEVELOPMENT & nodemon back_end/server.js",
-    "prod": "SET NODE_ENV=PRODUCTION & nodemon back_end/server.js",
-    "seeder": "node back_end/utils/seeder.js"
-  },
-  "author": "Nshimiye Emmy",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.15",
-    "nodemailer": "^6.5.0",
-    "validator": "^13.5.2"
+    "name": "shop_it",
+    "version": "1.0.0",
+    "description": "complete ecommerce application using MERN ",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node back_end/server.js",
+      "dev": "SET NODE_ENV=DEVELOPMENT & nodemon back_end/server.js",
+      "prod": "SET NODE_ENV=PRODUCTION & nodemon back_end/server.js",
+      "seeder": "node back_end/utils/seeder.js"
+    },
+    "author": "Nshimiye Emmy",
+    "license": "ISC",
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.19.0",
+      "cookie-parser": "^1.4.5",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.11.15",
+      "nodemailer": "^6.5.0",
+      "validator": "^13.5.2"
+    }
   }
-}

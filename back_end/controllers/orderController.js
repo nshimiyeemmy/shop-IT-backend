@@ -83,6 +83,7 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
     
     //updating the quantity of Product items quantity back in products table after a purchase
     order.orderItems.forEach(async item => {
+        //function to update product quantity
       await updateQuantity(item.product,item.quantity)
     })
     
@@ -97,7 +98,7 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
         Orders:order
     })
 })
-//method to update the product quantity when the order is made on that product
+//method to update the product quantity when the order is made on that product(this is like reducing it's quantity in db when it has been placed on an order)
   async function updateQuantity(id, quantity) {
     const product = await Product.findById(id)     
     product.quantity = product.quantity - quantity; 
