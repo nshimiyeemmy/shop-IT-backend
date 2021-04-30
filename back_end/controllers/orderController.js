@@ -28,7 +28,7 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
         paymentInfo,
         paidAt:Date.now(),
         user:req.user._id
-    })               
+    })
     res.status(200).json({
         success:true,
         Order:order
@@ -55,7 +55,7 @@ exports.allOrders = catchAsyncErrors(async(req,res,next)=>{
 exports.getSingleOrder = catchAsyncErrors(async(req,res,next)=>{
     const order = await Order.findById(req.params.id).populate('user','name email');
     if(!order){
-        return next(new ErrorHandler(`Order not Found with id ${req.params.id}`, 404)); 
+        return next(new ErrorHandler(`Order not Found with id ${req.params.id}`, 404));
     }
     res.status(200).json({
         success:true,
@@ -80,17 +80,20 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
     if(order.orderStatus === 'Delivered'){
    return next(new ErrorHandler('You have already delivered this order',400))
     }
-    
+
     //updating the quantity of Product items quantity back in products table after a purchase
     order.orderItems.forEach(async item => {
         //function to update product quantity
       await updateQuantity(item.product,item.quantity)
     })
-    
+
+
+
+
     //updating the order status and the delivered date
     order.orderStatus = req.body.orderStatus,
     order.deliveredAt = Date.now()
-    
+
    await order.save({ validateBeforeSave:false })
     res.status(200).json({
         success:true,
@@ -100,19 +103,16 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
 })
 //method to update the product quantity when the order is made on that product(this is like reducing it's quantity in db when it has been placed on an order)
   async function updateQuantity(id, quantity) {
-    const product = await Product.findById(id)     
-    product.quantity = product.quantity - quantity; 
+    const product = await Product.findById(id)
+    product.quantity = product.quantity - quantity;
     await product.save({ validateBeforeSave:false });
 }
-
-
-
 //Delete an Order  => /api/v1/admin/order/:id
 exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
     const order = await Order.findById(req.params.id);
     //check if order exists
     if(!order){
-        return next(new ErrorHandler(`Order not Found with id ${req.params.id}`, 404)); 
+        return next(new ErrorHandler(`Order not Found with id ${req.params.id}`, 404));
     }
    // if order exists then remove(delete) it from the database
     await order.remove();
