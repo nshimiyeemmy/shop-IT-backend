@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
         country:{
                     type:String,
                     required:true
-                    
+
                     }
                 },
 
@@ -44,7 +44,7 @@ This is getting all the products that the user want to buy in this order.
             name:{
                  type:String,
                   required:true
-                }, 
+                },
             //Quantity of that product that, that user want to purchase{order}
             quantity:{
                    type:Number,
@@ -68,12 +68,12 @@ This is getting all the products that the user want to buy in this order.
                ],
 
            /*Information about order payment, in this case  we are going to be using stripe payment
-           So we need ID of Stripe{Stripe gives us ID of the transaction}, 
+           So we need ID of Stripe{Stripe gives us ID of the transaction},
             and also the status of that transaction
            */
            paymentInfo:{
                id:{
-                   type:String, 
+                   type:String,
                },
                status:{
                    type:String
@@ -83,20 +83,20 @@ This is getting all the products that the user want to buy in this order.
                 type:Date
             },
         /*itemsPrice is like total price of items only, like if you want to purchase apple watch & it's price is $3
-        and you want to purchase apple watch of quantity 1, then price is $3 
+        and you want to purchase apple watch of quantity 1, then price is $3
         */
            itemsPrice:{
                type:Number,
                require:true,
                default:0.0
-           } , 
+           } ,
          //Below is where we are going to calculate the tax price
          taxPrice:{
             type:Number,
             require:true,
             default:0.0
         },
-        /* Below is where we are going to calculate the shipping price depending on what they purchased 
+        /* Below is where we are going to calculate the shipping price depending on what they purchased
         like if user has purchased products of price greater than $100 then shipping price=0 and when purchase price is below $100 then sipping price=$25
         */
         shippingPrice:{
@@ -104,6 +104,7 @@ This is getting all the products that the user want to buy in this order.
             require:true,
             default:0.0
         },
+        
         //This is the total amount of money that user has to pay, it's addition of shippingPrice,taxPrice and itemsPrice
         totalPrice:{
             type:Number,
@@ -125,4 +126,3 @@ This is getting all the products that the user want to buy in this order.
     }
 });
 module.exports = mongoose.model('Order', orderSchema);
-
