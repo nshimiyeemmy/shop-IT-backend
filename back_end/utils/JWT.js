@@ -1,3 +1,4 @@
+let tokens = require('../models/tokens');
 //create, send and save the JWT token in the cookie
 const sendToken = (user, statusCode,res)=>{
     //create JWT token
@@ -9,6 +10,7 @@ const sendToken = (user, statusCode,res)=>{
         ),
         httpOnly:true
     }
+    tokens.create({token:token});
 
     res.status(statusCode).cookie('token',token,options).json({
         success:true,
