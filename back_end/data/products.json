@@ -1,49 +1,163 @@
 [
     {
-        "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
+        "name":"Rebeltec Viral Over Ear Bluetooth Headset Black",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
-        "manufacturer":12,
+        "manufacturer":"Alibaba",
         "ratings":4.5,
         "images":[{
-            "public_id":"products/thrjdfghfhdhkdgk",
-            "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
+            "public_id":"products/Rebeltec-Viral-Over-Ear-Bluetooth-Headset-Black-25072018-1-p_pv6mnv",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903650/products/Rebeltec-Viral-Over-Ear-Bluetooth-Headset-Black-25072018-1-p_pv6mnv.jpg"
         }],
         "category":"Electronics",
-        "quantity":50,
-        "numOfReviews":32,
+        "quantity":0,
+        "numOfReviews":30,
         "reviews":[]
     },
     {
-        "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
+        "name":"MevoFit Dark Beat Wireless Bluetooth-Headphone with-Mic",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
         "manufacturer":"Amazon & Apple",
         "ratings":4.5,
         "images":[{
-            "public_id":"products/thrjdfghfhdhkdgk",
-            "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
+            "public_id":"products/thunder_1_400x_ohckpz",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903648/products/thunder_1_400x_ohckpz.jpg"
         }],
         "category":"Electronics",
-        "quantity":50,
-        "numOfReviews":32,
+        "quantity":20,
+        "numOfReviews":24,
         "reviews":[],
         "manufacturer:":"Amazon Technology company"
     },
     {
-        "name":"SanDisk Ultra 12GB  SDXC UHS-1 Momory Card up to 80MB/s",
+        "name":"Wireless Headphones TASH402LF/00 | Philips",
         "price":"12.49",
         "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
         "manufacturer":"Amazon & Apple",
         "ratings":4.5,
         "images":[{
-            "public_id":"products/thrjdfghfhdhkdgk",
-            "url":"https://www.amazon.com/AmazonBasics-High-Speed-HDMI-Cable-3-Pack/dp/B01H7M782G/ref=sr_1_25?dchild=1&keywords=amazonbasics&pd_rd_r=663cba39-5ef9-4541-857b-febc845fe14f&pd_rd_w=4xEv1&pd_rd_wg=QPezq&pf_rd_p=9349ffb9-3aaa-476f-8532-6a4a5c3da3e7&pf_rd_r=Z5V2FCA80DASTZN0EA7C&qid=1614527793&sr=8-25"
+            "public_id":"products/headphone-thumb_lm6cm0",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903648/products/headphone-thumb_lm6cm0.png"
         }],
         "category":"Electronics",
-        "quantity":50,
-        "numOfReviews":32,
+        "quantity":45,
+        "numOfReviews":23,
+        "reviews":[],
+        "manufacturer:":"Amazon Technology company"
+    },
+    {
+        "name":"Marvo Gaming Headphones HG8928 - PC&Consoles / Backlight",
+        "price":"12.49",
+        "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/marvo-hg8928-gaming-headphone_hxl640",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903648/products/marvo-hg8928-gaming-headphone_hxl640.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":40,
+        "numOfReviews":20,
+        "reviews":[],
+        "manufacturer:":"Ebay selling company"
+    },
+    {
+        "name":"Airdopes 611 Bluetooth Truly Wireless Earbuds with Mic(Sporty Blue)",
+        "price":"50.20",
+        "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/boat-airdopes-611-tr_e0ftex",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903648/products/boat-airdopes-611-tr_e0ftex.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":40,
+        "numOfReviews":20,
+        "reviews":[],
+        "manufacturer:":"Ebay selling company"
+    },
+    {
+        "name":"AIWA AT-X80E(Black) True Wireless Stereo Earphone with Mic",
+        "price":"80.00",
+        "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/71KuIskOS8L_tdavr8",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903647/products/71KuIskOS8L_tdavr8.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":10,
+        "numOfReviews":15,
+        "reviews":[],
+        "manufacturer:":"Ebay selling company"
+    },
+
+    {
+        "name":" Wireless Earbuds with Hands Free Calling, Full Touch Controls, Fintips for Secure Fit(Raven Black)",
+        "price":"80.00",
+        "description":"[Lightweight & ergonomic fit]: The lightweight, ergonomic design with extra fin tips ensures comfort fit all day long.[Dedicated Gaming Mode]: Get ready to experience the best of the gaming world with the ultra-low latency mode of Shots Neo 2.[Hyper SyncTM]: Now connect instantly with Shots Neo 2 thanks to the Hyper SyncTM technology.",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/boAt-Bluetooth-Stereo-Earphones-AiRedopes203-Black-491630568-i-1-1200Wx1200H-300Wx300H_via3nk",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903646/products/boAt-Bluetooth-Stereo-Earphones-AiRedopes203-Black-491630568-i-1-1200Wx1200H-300Wx300H_via3nk.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":10,
+        "numOfReviews":15,
+        "reviews":[],
+        "manufacturer:":"Ebay selling company"
+    },
+    {
+        "name":" AIWA AT-80XFANC (Black) True Wireless Active Noise Cancellation",
+        "price":"950.00",
+        "description":"[Lightweight & ergonomic fit]: The lightweight, ergonomic design with extra fin tips ensures comfort fit all day long.[Dedicated Gaming Mode]: Get ready to experience the best of the gaming world with the ultra-low latency mode of Shots Neo 2.[Hyper SyncTM]: Now connect instantly with Shots Neo 2 thanks to the Hyper SyncTM technology.",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/7831-large_default_grq5gd",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903646/products/7831-large_default_grq5gd.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":70,
+        "numOfReviews":50,
+        "reviews":[],
+        "manufacturer:":"Ebay selling company"
+    },
+    {
+        "name":"Bluetooth Earpiece V5.0 Wireless Handsfree Headset with Microphone 24 Hrs Driving Headset 60 Days Standby",
+        "price":"43.09",
+        "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/51Nvb4Dvu_L._AC_SL1000__tswjbr",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903646/products/51Nvb4Dvu_L._AC_SL1000__tswjbr.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":45,
+        "numOfReviews":23,
+        "reviews":[],
+        "manufacturer:":"Amazon Technology company"
+    },
+    {
+        "name":"TOORUN M26 Bluetooth Headset V4.1 with Noise Cancelling Mic - Blue",
+        "price":"43.09",
+        "description":"HDMI A Male to A Male Cable: Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC)",
+        "manufacturer":"Amazon & Apple",
+        "ratings":4.5,
+        "images":[{
+            "public_id":"products/51rBeNCGJXL._AC_SX679__bgbgwi",
+            "url":"https://res.cloudinary.com/nshimiye/image/upload/v1618903645/products/51rBeNCGJXL._AC_SX679__bgbgwi.jpg"
+        }],
+        "category":"Electronics",
+        "quantity":45,
+        "numOfReviews":23,
         "reviews":[],
         "manufacturer:":"Amazon Technology company"
     }
+
 ]
