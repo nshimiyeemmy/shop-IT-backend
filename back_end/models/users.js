@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true,'Please enter your Password'],
         minlength:[6, 'Your password must be longer than 6 characters'],
-        
+
         select:false
     },
     avatar:{
@@ -87,4 +87,3 @@ this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest(
 
 }
 module.exports = mongoose.model('Users', userSchema);
-
