@@ -18,6 +18,6 @@ router.route('/admin/users').get(isUserAuthenticated,getAllUsers);
 router.route('/admin/user/:id').get(isUserAuthenticated,authorizeRole('admin'),getUserDetails)
                                 .put(isUserAuthenticated,authorizeRole('admin'),updateUserDetails)
                                 .delete(isUserAuthenticated,authorizeRole('admin'),deleteUser);
- 
+
 
 module.exports = router;
