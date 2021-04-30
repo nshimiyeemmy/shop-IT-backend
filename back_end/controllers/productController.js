@@ -11,21 +11,26 @@ exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
     const resPerPage = 4;
     //In order to implement pagination on front end you have to provide total number of documents in the database like below
     const productCount = await Products.countDocuments();
-
     const apiFeatures = new APIFeatures(Products.find(), req.query)
                             .search()
-                            .filter()
-                            .pagination(resPerPage);
-    const products = await apiFeatures.query;
+                            .filter();
+    let products = await apiFeatures.query;
+    let filteredProductsCount = products.length
+    apiFeatures.pagination(resPerPage);
+    products = await apiFeatures.query;
+
     res.status(200).json({
         success: true,
-        //Count: products.length,
         productCount:productCount,
-        data: products
+        resPerPage:resPerPage,
+        FilteredProductsCount:filteredProductsCount,
+        data: products,
     })
+
 })
 //Get single Product =>   /api/v1/products/:id
 exports.getSingleProduct = catchAsyncErrors(async (req,res,next) =>{
+
     const product = await Products.findById(req.params.id);
 
     if(!product)
@@ -35,7 +40,6 @@ exports.getSingleProduct = catchAsyncErrors(async (req,res,next) =>{
                 data:product
             });
 })
-
 //Create new Product =>   /api/v1/admin/products/new
 exports.newProducts =catchAsyncErrors(async (req,res,next)=>{
     const products = await Products.create(req.body);
@@ -80,8 +84,6 @@ exports.updateProduct = catchAsyncErrors(async (req,res,next)=>{
     })
 })
 
-
-
 //Create new review  => /api/v1/review/new
 exports.createProductReview = catchAsyncErrors(async(req,res,next)=>{
     const {rating, comment, productId} = req.body;
@@ -106,16 +108,16 @@ exports.createProductReview = catchAsyncErrors(async(req,res,next)=>{
                 review.rating = rating
             }
         });
-         
+
     }else{
-        
+
      // if user has not reviewed the product before, we are going to push the review to the product
       product.reviews.push(review);
       //And then update the numberOfReviews on product
       product.numberOfReviews = product.reviews.length;
     }
     //Updating the total ratings using reduce() that will reduce the multiple values{many reviews} to one single value {ratings}
-    product.ratings = product.reviews.reduce((acc,item) =>item.rating + acc, 0) / product.reviews.length
+    product.ratings = product.reviews.reduce((acdc,item) =>item.rating + acc, 0) / product.reviews.length
 
     //then save the product
     await product.save({validateBeforeSave:false})
@@ -141,14 +143,14 @@ exports.getAllProductReviews = catchAsyncErrors(async(req,res,next)=>{
         Reviews:product.reviews,
     })
     })
-    
+
 
 //Delete product review  => /api/v1/admin/review
 exports.deleteProductReview = catchAsyncErrors(async(req,res,next)=>{
     //getting the product by it's ID
     let product = await Products.findById(req.query.productId);
     if(!product){
-        return next(new ErrorHandler('Product not Found', 404));
+        return next(new ErrorHandler('Product not Found',404));
     }
 
     //Filtering reviews of product from the product
@@ -159,11 +161,11 @@ exports.deleteProductReview = catchAsyncErrors(async(req,res,next)=>{
 
     //Updating the total ratings using reduce() that will reduce the multiple values{many reviews} to one single value {ratings}
     const ratings = product.reviews.reduce((acc,item) =>item.rating + acc, 0) / reviews.length
-    
-    //updating the product 
+
+    //updating the product
      product =  await Products.findByIdAndUpdate(req.query.productId,{
         reviews,
-        ratings,  
+        ratings,
         numberOfReviews
     },{
         new:true,
@@ -177,9 +179,3 @@ exports.deleteProductReview = catchAsyncErrors(async(req,res,next)=>{
         Product:product
     })
     })
-
-
-
-
-
-
