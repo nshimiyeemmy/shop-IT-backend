@@ -7,8 +7,8 @@ const productSchema = new mongoose.Schema({
     name:{
         type:String,
         required:[true,'Please enter product name'],
-        trim:true, 
-        maxLength:[100, 'Product name cannot exceed 100 characters'],
+        trim:true,
+        maxLength:[200,'Product name cannot exceed 200 characters'],
     },
     price:{
         type:Number,
@@ -44,7 +44,7 @@ const productSchema = new mongoose.Schema({
     category:{
         type:String,
         required:[true, 'Please select the category for this product'],
-        //I defined product Categories an enum values 
+        //I defined product Categories an enum values
         enum:{
             values:[
                 'Electronics',
@@ -92,15 +92,14 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-    user:{
-        type:mongoose.Schema.ObjectId,
-        ref:'User',
-        required:true
-    },
+    // user:{
+    //     type:mongoose.Schema.ObjectId,
+    //     ref:'User',
+    //     required:true
+    // },
     createdAt:{
         type:Date,
         default:Date.now()
         }
 })
 module.exports = mongoose.model('Products', productSchema);
-
