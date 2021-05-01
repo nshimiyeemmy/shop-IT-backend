@@ -8,6 +8,8 @@ const APIFeatures = require('../utils/apiFeatures');
 
 //Get All Products =>   /api//v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
+    // return next(new ErrorHandler('Product not Found', 404));
+
     const resPerPage = 4;
     //In order to implement pagination on front end you have to provide total number of documents in the database like below
     const productCount = await Products.countDocuments();
@@ -30,9 +32,7 @@ exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
 })
 //Get single Product =>   /api/v1/products/:id
 exports.getSingleProduct = catchAsyncErrors(async (req,res,next) =>{
-
     const product = await Products.findById(req.params.id);
-
     if(!product)
          return next(new ErrorHandler('Product not Found', 404));
             res.status(200).json({
@@ -75,7 +75,6 @@ exports.updateProduct = catchAsyncErrors(async (req,res,next)=>{
     let product = await Products.findById(req.params.id);
     if(!product){
         return next(new ErrorHandler('Product not Found', 404));
-
     }
     product = await Products.remove();
     res.status(200).json({
