@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
 //Below we are going to first be handling the shipping info of the order.
     shippingInfo:{
-
         address:{
         type:String,
         required:true
@@ -104,7 +103,7 @@ This is getting all the products that the user want to buy in this order.
             require:true,
             default:0.0
         },
-        
+
         //This is the total amount of money that user has to pay, it's addition of shippingPrice,taxPrice and itemsPrice
         totalPrice:{
             type:Number,
