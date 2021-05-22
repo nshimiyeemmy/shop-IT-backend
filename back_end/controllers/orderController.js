@@ -16,7 +16,6 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
         shippingPrice,
         totalPrice,
         paymentInfo
-
     } = req.body
     const order = await Order.create({
         orderItems,
@@ -34,7 +33,6 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
         Order:order
     })
 })
-
 //Get all orders => /api/v1/admin/orders
 exports.allOrders = catchAsyncErrors(async(req,res,next)=>{
     const orders = await Order.find();
