@@ -54,15 +54,12 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHandler('User with this email does not exist', 404));
   }
-
   //get the reset token and save it to the user
   const resetToken = user.getResetPasswordToken();
   await user.save({ validateBeforeSave: false });
 
   //Create the reset Password url   => /api/v1/password/reset
-  const resetUrl = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/password/reset/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
   const message = `Your password reset token is as follows:\n\n${resetUrl}\n\n If you have not requested this email, just ignore it`;
 
   try {
@@ -107,7 +104,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
-
   await user.save();
   sendToken(user, 200, res);
 });
@@ -115,13 +111,11 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 //Getting the currently logged in user profile details  => /api/v1/me
 exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-
   res.status(200).json({
     success: true,
-    User: user,
+    user,
   });
 });
-
 //Update / change Password  => /api/v1/password/update
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('+password');
@@ -141,7 +135,21 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     lastname: req.body.lastname,
     email: req.body.email,
   };
-  //Update the user avatar: TODO
+  //updated the avatar
+  if (req.body.avatar !== '') {
+    const user = await User.findById(req.user.id);
+    const image_id = user.avatar.public_id;
+    const res = await cloudinary.v2.uploader.destroy(image_id);
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: 'users',
+      width: 150,
+      crop: 'scale',
+    });
+    newUserData.avatar = {
+      public_id: result.public_id,
+      url: result.secure_url,
+    };
+  }
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
@@ -150,10 +158,9 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'updated successfully Successfully',
-    User: user,
+    user,
   });
 });
-
 //logout User  => /api/v1/logout
 exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
   res.cookie('token', null, {
@@ -165,9 +172,7 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
     message: 'Logged Out Successfully',
   });
 });
-
 //Admin routes
-
 //Get all Users  => /api/v1/admin/users
 exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
