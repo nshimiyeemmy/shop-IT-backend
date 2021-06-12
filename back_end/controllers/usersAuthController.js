@@ -75,7 +75,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
-
     await user.save({ validateBeforeSave: false });
     return next(new ErrorHandler(error.message, 500));
   }
@@ -87,7 +86,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-
   const user = await User.findOne({
     resetPasswordToken,
     resetPasswordExpire: { $gt: Date.now() },
@@ -215,7 +213,6 @@ exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
     User: user,
   });
 });
-
 //Delete User  => /api/v1/admin/user/:id
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -225,7 +222,6 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     );
   }
   //Remove avatar from Cloudinary:TODO
-
   await user.remove();
   res.status(200).json({
     success: true,
