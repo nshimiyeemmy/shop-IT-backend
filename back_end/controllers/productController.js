@@ -10,7 +10,7 @@ const APIFeatures = require('../utils/apiFeatures');
 exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
     // return next(new ErrorHandler('Product not Found', 404));
 
-    const resPerPage = 4;
+    const resPerPage = 8;
     //In order to implement pagination on front end you have to provide total number of documents in the database like below
     const productCount = await Products.countDocuments();
     const apiFeatures = new APIFeatures(Products.find(), req.query)
