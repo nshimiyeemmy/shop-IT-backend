@@ -14,11 +14,13 @@ app.use(fileUpload());
 //Importing all the routes
 const products = require('./routes/products');
 const users = require('./routes/userAuth');
+const payment = require('./routes/payment');
 const orders = require('./routes/orders');
 
 // doing routes
 app.use('/api/v1', products);
 app.use('/api/v1', users);
+app.use('/api/v1', payment);
 app.use('/api/v1', orders);
 
 //Implementing the middleware to handle errors
