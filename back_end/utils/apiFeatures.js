@@ -3,7 +3,6 @@ class APIFeatures{
         this.query= query,
         this.queryStr = queryStr
     }
-
     //creating the search method
     search(){
     const keyword = this.queryStr.keyword ? {
@@ -28,7 +27,7 @@ filter(){
     //Advance filter functionality for price, ratings and many others
     let queryStr = JSON.stringify(queryCopy);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
-     
+
     this.query = this.query.find(JSON.parse(queryStr));
     return this;
 }
