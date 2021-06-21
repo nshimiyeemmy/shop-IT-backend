@@ -24,12 +24,11 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
   },
-
   //We are also gonna be getting the Info of User who placed an order
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'User',
+    ref: 'Users',
   },
 
   /*
@@ -44,7 +43,7 @@ This is getting all the products that the user want to buy in this order.
         required: true,
       },
       //Quantity of that product that, that user want to purchase{order}
-      quantity: {
+      cartQuantity: {
         type: Number,
         required: true,
       },
