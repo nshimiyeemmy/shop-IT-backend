@@ -5,6 +5,7 @@ const {
   getSingleProduct,
   newProducts,
   getProducts,
+  getAdminProducts,
   updateProduct,
   deleteProduct,
   createProductReview,
@@ -17,6 +18,7 @@ const {
 } = require('../middlewares/authenticate');
 
 router.route('/products').get(getProducts);
+router.route('/admin/products').get(getAdminProducts);
 router
   .route('/admin/products/new')
   .post(isUserAuthenticated, authorizeRole('admin'), newProducts);
