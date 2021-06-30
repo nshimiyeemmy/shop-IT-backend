@@ -28,6 +28,16 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     data: products,
   });
 });
+
+//Get All Products for (admins) =>   /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+  const products = await Products.find();
+  res.status(200).json({
+    success: true,
+    products,
+  });
+});
+
 //Get single Product =>   /api/v1/products/:id
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Products.findById(req.params.id);
